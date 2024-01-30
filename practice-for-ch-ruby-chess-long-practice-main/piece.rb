@@ -1,0 +1,15 @@
+class Piece 
+
+
+
+
+
+
+
+
+
+
+
+
+
+end
