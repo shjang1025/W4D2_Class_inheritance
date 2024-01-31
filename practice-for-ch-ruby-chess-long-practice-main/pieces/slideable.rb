@@ -35,6 +35,14 @@ module Slidable
       # return current res if there is a piece of same color at new_pos
       # add new_pos to res and return if there is a piece of opposite color at new_pos
       # add new_pos to res and continue looping if new_pos is empty
+      if !new_pos.all?{|num| num.between(0,7)}
+      while new_pos.empty?
+        res << new_pos
+        r, c = new_pos
+        new_pos = [r + dr, c + dc]
+
+
+      end
     end
 
 end
