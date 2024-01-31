@@ -1,7 +1,13 @@
-class Piece
+# require_relative "./pieces/slideable.rb"
+# require_relative "./pieces/steppable.rb"
+Dir["./pieces/*.rb"].each {|file| require file }
 
-    def initialize(val)
-        @val =val
+class Piece
+    attr_reader :color
+    def initialize(color, board, position)
+        @color = color
+        @board = board
+        @position = position
     end
 
 

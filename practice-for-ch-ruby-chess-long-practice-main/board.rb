@@ -8,14 +8,14 @@ class Board
     end
 
     def populate
-        @rows[0] = [Piece.new("BRook"), Piece.new("BKnight"), Piece.new("BBishop"), Piece.new("BQueen"), Piece.new("BKing"), Piece.new("BBishop"), Piece.new("BKnight"), Piece.new("BRook")]
-        @rows[1].map! {|ele| ele = Piece.new("BPawn")}
+        @rows[0] = [Rook.new("black",self, [0,0]), Knight.new("black",self,[0,1]), Bishop.new("black",self,[0,2]), Queen.new("black", self, [0,3]), King.new("black",self,[0,4]) , Bishop.new("black",self,[0,5]),Knight.new("black",self,[0,6]), Rook.new("black",self, [0,7])]
+        @rows[1].each_with_index {|ele,idx| ele = Pawn.new("black", self, [1,idx])}
         (2..5).each do |row|
-            @rows[row].map! {|ele| ele = Piece.new("NullPiece")}
+            @rows[row].each_with_index {|ele,idx| ele = NullPiece.new("white",self, [row,idx])}
         end
-        @rows[6].map! {|ele| ele = Piece.new("WPawn")}
+        @rows[6].each_with_index {|ele,idx| ele = Pawn.new("white", self, [6,idx])}
 
-        @rows[7] = [Piece.new("WRook"), Piece.new("WKnight"), Piece.new("WBishop"), Piece.new("WQueen"), Piece.new("WKing"), Piece.new("WBishop"), Piece.new("WKnight"), Piece.new("WRook")]
+        @rows[7] = [Rook.new("white",self,[7,0]), Knight.new("white",self,[7,1]), Bishop.new("white",self,[7,2]), Queen.new("white", self, [7,3]), King.new("white",self,[7,4]) , Bishop.new("white",self,[7,5]),Knight.new("white",self,[7,6]), Rook.new("white",self, [7,7])]
 
     end
 
@@ -31,14 +31,14 @@ class Board
     end
 
     def move_piece(start_pos, end_pos)
-        if self[start_pos] == Piece.new("NullPiece")
+        if self[start_pos] == NullPiece.new("white", self, start_pos)
             raise "There is no piece to move on this position"
         # elsif !@rows[start_pos].valid_moves.include?(end_pos)
         #     raise "You cannot move to this position"
         end
 
         value = self[start_pos]
-        self[start_pos] = Piece.new("NullPiece")
+        self[start_pos] = NullPiece.new("white", self, start_pos)
         self[end_pos] = value
     end
 
