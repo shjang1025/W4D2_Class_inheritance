@@ -1,5 +1,3 @@
-# require_relative "./pieces/slideable.rb"
-# require_relative "./pieces/steppable.rb"
 
 class Piece
 
