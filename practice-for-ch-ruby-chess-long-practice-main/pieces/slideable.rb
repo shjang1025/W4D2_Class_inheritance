@@ -1,4 +1,4 @@
-module Slidable
+module Slideable
     STRAIGHT_DIRS = [[0,1],[1,0],[0,-1],[-1,0]]
     DIAGONAL_DIRS = [[1,1],[1,-1],[-1,-1],[-1,1]]
 
@@ -12,13 +12,13 @@ module Slidable
       res
     end
 
-    def pos
-      raise NotImplementedError.new
-    end
+    # def pos
+    #   raise NotImplementedError.new
+    # end
 
-    def board
-      raise NotImplementedError.new
-    end
+    # def board
+    #   raise NotImplementedError.new
+    # end
 
     def move_dirs
       # this only runs if the base class does not overwrite
@@ -28,20 +28,25 @@ module Slidable
     private
     def grow_unblocked_moves_in_dir(dir)
       res = []
-      r, c = pos
+      r, c = position
       dr, dc = dir
       new_pos = [r + dr, c + dc] # generate potential new position
       # return current res if new_pos is off the board
       # return current res if there is a piece of same color at new_pos
       # add new_pos to res and return if there is a piece of opposite color at new_pos
       # add new_pos to res and continue looping if new_pos is empty
-      if !new_pos.all?{|num| num.between(0,7)}
-      while new_pos.empty?
+      return res if !new_pos.all?{|num| num.between?(0,7)}
+      while self.board[new_pos].empty?
         res << new_pos
         r, c = new_pos
         new_pos = [r + dr, c + dc]
-
-
+        return res if !new_pos.all?{|num| num.between?(0,7)}
+      end
+      if self.board[new_pos].color == self.color
+        return res
+      else
+        res << new_pos
+        return res
       end
     end
 

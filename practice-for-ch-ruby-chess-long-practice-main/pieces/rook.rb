@@ -1,8 +1,8 @@
-require_relative "../piece.rb"
+require_relative "./piece.rb"
 require_relative 'slideable'
 
 class Rook < Piece
-    # include Slidable
+    include Slideable
 
     def symbol
         color == :black ? '♜' : '♖'

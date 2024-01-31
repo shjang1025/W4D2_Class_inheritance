@@ -1,6 +1,8 @@
-require_relative "../piece.rb"
+require_relative "./piece.rb"
 
 class Knight < Piece
+
+    
 
 
     protected
