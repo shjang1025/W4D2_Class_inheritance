@@ -1,14 +1,16 @@
 require_relative "../piece.rb"
+require_relative 'slideable'
 
-class Rook < Piece 
-    # include Slidable 
+class Rook < Piece
+    # include Slidable
 
-    def initialize(color, board, position)
-        super
+    def symbol
+        color == :black ? '♜' : '♖'
     end
 
     private
+
     def move_dirs
-        return "moves vertically"
+        STRAIGHT_DIRS
     end
 end

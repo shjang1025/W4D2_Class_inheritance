@@ -1,14 +1,16 @@
 require_relative "../piece.rb"
-
+require_relative 'slideable'
 class Queen < Piece
-    # include Slidable 
+    # include Slidable
+  include Slideable
 
-    def initialize(color, board, position)
-        super
-    end
+  def symbol
+    color == :black ? '♛' : '♕'
+  end
 
-    private
-    def move_dirs
-        return "moves vertically and diagonally"
-    end
+  private
+
+  def move_dirs
+    STRAIGHT_DIRS + DIAGONAL_DIRS
+  end
 end
