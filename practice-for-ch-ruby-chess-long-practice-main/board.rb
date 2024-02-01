@@ -31,13 +31,14 @@ class Board
     def move_piece(start_pos, end_pos)
         if self[start_pos] == NullPiece.instance
             raise "There is no piece to move on this position"
-        # elsif !@rows[start_pos].valid_moves.include?(end_pos)
-        #     raise "You cannot move to this position"
+        elsif !self[start_pos].moves.include?(end_pos)
+            raise "You cannot move to this position"
         end
 
         value = self[start_pos]
         self[start_pos] = NullPiece.instance
         self[end_pos] = value
+        self[end_pos].pos = end_pos
     end
 
 end

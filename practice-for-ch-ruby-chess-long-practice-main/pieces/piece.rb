@@ -21,7 +21,7 @@ class Piece
     end
 
     def pos=(val)
-
+        @position = val
     end
 
     def symbol

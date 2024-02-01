@@ -22,6 +22,6 @@ module Steppable
     def move_diffs
         # this only runs if the base class does not overwrite
         raise NotImplementedError.new
-      end
+    end
 
 end
